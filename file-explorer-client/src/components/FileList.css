@@ -1,0 +1,26 @@
+.fileList {
+  list-style: none;
+  padding: 0;
+}
+
+.fileItem {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.fileItem:hover {
+  background-color: #f0f0f0;
+}
+
+.fileName {
+  margin-right: 10px;
+}
+
+.fileSize {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.focused {
+  background-color: lightblue;
+}

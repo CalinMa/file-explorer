@@ -16,8 +16,8 @@ export const getFilesInDirectory = (dirPath: string) => {
       const files = fs.readdirSync(dirPath);
   
       return files.map((file) => {
-        const filePath = path.join(dirPath, file);
-        const fileStats = fs.statSync(filePath);
+        const filePath = path.join(dirPath, file); 
+        const fileStats = fs.statSync(filePath); 
   
         if (!fs.existsSync(filePath)) {
             throw new Error(`Fișierul sau directorul "${filePath}" nu există.`);
@@ -45,12 +45,12 @@ export const getFilesInDirectory = (dirPath: string) => {
 export const getFileDetails = (filePath: string) => {
   try {
 
-    if (!fs.existsSync(filePath)) {
+    if (!fs.existsSync(filePath)) { 
       throw new Error(`Path-ul "${filePath}" nu există.`);
     }
 
-    const stats = fs.statSync(filePath);
-
+    const stats = fs.statSync(filePath); 
+  
     return {
       name: path.basename(filePath), 
       type: stats.isDirectory() ? 'directory' : 'file',

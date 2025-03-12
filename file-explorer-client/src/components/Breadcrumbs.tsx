@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Breadcrumbs.css'
 interface BreadcrumbsProps {
     currentPath: string[];
     onNavigate: (path: string) => void;
@@ -9,7 +9,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ currentPath, onNavigate }) =>
     const current = '';
 
     return (
-        <div className="breadcrumbs">
+        <div className={'breadcrumbs'}>
             {currentPath.map((part, index) => {
                 const displayPart = part === '.' ? './' : part;
                 const path = current + part;

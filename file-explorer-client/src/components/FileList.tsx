@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './FileList.module.css';
+import './FileList.css';
 
 interface FileItem {
     name: string;
@@ -10,34 +10,35 @@ interface FileItem {
 }
 
 interface FileListProps {
-  files: FileItem[];
-  onNavigate: (path: string) => void;
-  onSelectFile: (file: FileItem) => void;
+    files: FileItem[];
+    onNavigate: (path: string) => void;
+    onSelectFile: (file: FileItem) => void;
+    focusedIndex: number;
 }
 
-const FileList: React.FC<FileListProps> = ({ files, onNavigate, onSelectFile }) => {
+const FileList: React.FC<FileListProps> = ({ files, onNavigate, onSelectFile, focusedIndex }) => {
   return (
-    <ul className={styles.fileList}>
-      {files.map((fileItem, index) => (
-        <li
-          key={index}
-          className={styles.fileItem}
-          onClick={() => {
-            console.log(fileItem)
-            if (fileItem.type === 'directory') {
-              onNavigate(fileItem.name);
-            } else {
-              onSelectFile(fileItem);
-            }
-          }}
-        >
-          <span className={styles.fileName}>{fileItem.name}</span>
-          {fileItem.type === 'file' && (
-            <span className={styles.fileSize}>({fileItem.size} bytes)</span>
-          )}
-        </li>
-      ))}
-    </ul>
+      <ul className={"fileList"}>
+          {files.map((fileItem, index) => (
+              <li
+                  key={index}
+                  className={`fileItem ${focusedIndex === index ? 'focused' : ''}`}
+                  onClick={() => {
+                      if (fileItem.type === 'directory') {
+                          onNavigate(fileItem.name);
+                      } else {
+                          onSelectFile(fileItem);
+                      }
+                  }}
+                  tabIndex={0} 
+              >
+                  <span className={"fileName"}>{fileItem.name}</span>
+                  {fileItem.type === 'file' && (
+                      <span className={"fileSize"}>({fileItem.size} bytes)</span>
+                  )}
+              </li>
+          ))}
+      </ul>
   );
 };
 
